@@ -5,17 +5,21 @@
 
 #include <SDL3/SDL_events.h>
 
+#include "Ember.hpp"
+
 EE::EmberEngine Engine;
 
 void EE::EmberEngine::Initialize()
 {
-    
+    LogEngine->Trace("Initializing Engine...");
 }
 
 void EE::EmberEngine::Run()
 {
     auto previousTime = std::chrono::high_resolution_clock::now();
     SDL_Event event;
+    
+    LogEngine->Trace("Engine Started...");
     
     while (isRunning)
     {
@@ -28,7 +32,7 @@ void EE::EmberEngine::Run()
 
         while (SDL_PollEvent(&event))
         {
-            // handle events
+            // Handle events
         }
 
         // Do not draw if we are minimized
@@ -45,5 +49,6 @@ void EE::EmberEngine::Run()
 
 void EE::EmberEngine::Shutdown()
 {
-    
+    LogEngine->Trace("Shutting Down Engine...");
+    LogEngine->Info("Engine uptime: {}s", Uptime());
 }
